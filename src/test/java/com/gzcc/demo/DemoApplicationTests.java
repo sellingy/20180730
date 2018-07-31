@@ -25,7 +25,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @Date date: 2018/7/30
  */
 @RunWith(SpringRunner.class)
-@SpringBootTest
 @WebMvcTest(HelloController.class)
 public class DemoApplicationTests {
 
@@ -34,7 +33,13 @@ public class DemoApplicationTests {
 
     @MockBean
     private HelloController helloController;
-
+/**
+ * @Author:yang
+ * @Description:test
+ * @Param:
+ * @return:
+ * @Date: 2018/7/30
+ */
     @Test
     public void testExample() throws Exception {
         given(this.helloController.greeting("user"))

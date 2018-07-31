@@ -1,10 +1,7 @@
 package com.gzcc.demo.controller;
 
 import com.gzcc.demo.model.Greeting;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -29,9 +26,60 @@ public class HelloController {
      * @return:com.gzcc.demo.Greeting
      * @Date: 2018/7/30
      */
-    @RequestMapping(value = "/greeting",method = RequestMethod.GET)
+    @GetMapping(value = "/greeting")
     public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
         return new Greeting(counter.incrementAndGet(),
                 String.format(VIEW, name));
     }
+
+    /**
+     * @Author:yang
+     * @Description:
+     * @Param: name
+     * @return:string
+     * @Date: 2018/7/30
+     */
+    @GetMapping(value="/greeting/{name}")
+    public String hello(@PathVariable String name){
+
+        return "hello,"+name;
+    }
+
+    /**
+     * @Author:yang
+     * @Description: post method
+     * @Param:
+     * @return:
+     * @Date: 2018/7/30
+     */
+    @PostMapping(value="/greeting/post")
+    public String post(@RequestBody String name){
+        return "hello"+name+",this is post method";
+    }
+
+    /**
+     * @Author:yang
+     * @Description:
+     * @Param:
+     * @return:
+     * @Date: 2018/7/30
+     */
+    @PutMapping(value="/greeting/put")
+    public String put(@RequestParam String name){
+      //  System.out.println(name);
+        return "this is put method";
+    }
+
+    /**
+     * @Author:yang
+     * @Description:
+     * @Param: delete
+     * @return:
+     * @Date: 2018/7/30
+     */
+    @DeleteMapping(value="/greeting/delete")
+    public String del(){
+        return "this is delete method";
+    }
+
 }
