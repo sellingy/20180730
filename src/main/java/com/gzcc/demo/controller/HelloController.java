@@ -1,6 +1,8 @@
 package com.gzcc.demo.controller;
 
 import com.gzcc.demo.model.Greeting;
+import com.gzcc.demo.model.Result;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.concurrent.atomic.AtomicLong;
@@ -12,7 +14,9 @@ import java.util.concurrent.atomic.AtomicLong;
  * @Package: com.gzcc.demo.controller
  * @Description:say hello example
  * @Date date: 2018/7/30
+ *
  */
+@EnableAutoConfiguration
 @RestController
 public class HelloController {
 
@@ -54,7 +58,7 @@ public class HelloController {
      */
     @PostMapping(value="/greeting/post")
     public String post(@RequestBody String name){
-        return "hello"+name+",this is post method";
+        return "你好"+name+",this is post method";
     }
 
     /**
@@ -81,5 +85,24 @@ public class HelloController {
     public String del(){
         return "this is delete method";
     }
+
+
+    /**
+     * @Author:yang
+     * @Description:
+     * @Param: 
+     * @return:
+     * @Date: 2018/7/31
+     */
+    @RequestMapping(value="/product/list",method=RequestMethod.GET,produces = "application/json;charset=UTF-8")
+    public Result  getFood(){
+//        List<Result> result=new ArrayList<>();
+        Result result=new Result();
+        result.setCode("200");
+        result.setMsg("success");
+     //   result.setData(dataList);
+        return result;
+    }
+
 
 }
